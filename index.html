@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laporan OOP Dart</title>
+
+<style>
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:#ffe6f2;
+    margin:0;
+}
+
+header{
+    background:#ff66b3;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+.container{
+    padding:30px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+h2{
+    color:#cc0066;
+}
+
+a{
+    color:#ff1493;
+    text-decoration:none;
+    font-weight:bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>Laporan OOP Dart</h1>
+<p>Konstruktor dan Enkapsulasi</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>1. Default & Parameterized Constructor</h2>
+<p>Default Constructor adalah constructor yang dibuat secara otomatis oleh Dart
+jika sebuah class tidak memiliki constructor yang ditulis oleh programmer.
+Constructor ini tidak memiliki parameter dan biasanya digunakan ketika kita ingin
+membuat objek terlebih dahulu kemudian mengisi nilai atributnya setelah objek tersebut dibuat.</p>
+<a href="https://dartpad.dev/4a5c39df814beec4885a216265b3a64b" target="_blank">
+Lihat Source Code
+</a>
+</div>
+
+<div class="card">
+<h2>2. Named Constructor</h2>
+<p>Named Constructor adalah constructor yang memiliki nama tambahan setelah nama class.
+Tujuan dari named constructor adalah untuk memberikan cara yang berbeda dalam membuat objek dari sebuah class.
+engan adanya named constructor, programmer dapat membuat objek dengan berbagai cara sesuai dengan kebutuhan program.</p>
+<a href="https://dartpad.dev/0157b9c5878f569602f713270400dcb2" target="_blank">
+Lihat Source Code
+</a>
+</div>
+
+<div class="card">
+<h2>3. Constant Constructor</h2>
+<p>Constant Constructor adalah constructor yang digunakan untuk membuat objek konstan (immutable).
+Objek yang dibuat dengan constant constructor tidak dapat diubah nilainya setelah objek tersebut dibuat.
+Hal ini membuat objek menjadi lebih aman dan efisien karena nilai dari objek tersebut bersifat tetap.</p>
+<a href="https://dartpad.dev/939785b16e10cbed79baa22314fc3f97" target="_blank">
+Lihat Source Code
+</a>
+</div>
+
+<div class="card">
+<h2>4. Initializer List</h2>
+<p>Initializer List adalah cara untuk menginisialisasi nilai variabel sebelum constructor dijalankan.
+Initializer list biasanya digunakan untuk memberikan nilai awal pada variabel yang bersifat final,
+karena variabel final hanya dapat diisi satu kali saat objek dibuat.</p>
+<a href="https://dartpad.dev/a076360fa5b018eacf505bc7441072f2" target="_blank">
+Lihat Source Code
+</a>
+</div>
+
+<div class="card">
+<h2>5. Dalam pemrograman berorientasi objek (Object Oriented Programming / OOP),
+terdapat beberapa konsep dasar yang sangat penting untuk dipahami,
+salah satunya adalah Encapsulation atau enkapsulasi.Private variable adalah variabel yang hanya dapat digunakan di dalam class itu sendiri.
+Variabel ini tidak dapat diakses secara langsung dari luar class sehingga data yang disimpan lebih aman dan tidak mudah diubah oleh bagian lain dari program.</p>
+<a href="https://dartpad.dev/ff07c962d1f2ef3ea2134807c62fe661" target="_blank">
+Lihat Source Code
+</a>
+</div>
+
+<div class="card">
+<h2>6. Getter</h2>
+<p>Getter adalah method yang digunakan untuk mengambil atau membaca nilai dari variabel private di dalam sebuah class.
+Dengan menggunakan getter, data tetap terlindungi karena tidak dapat diakses secara langsung,
+tetapi masih dapat dibaca melalui method yang telah disediakan.</p>
+<a href="https://dartpad.dev/e30b58edff231759bb1a1081f75df888" target="_blank">
+Lihat Source Code
+</a>
+</div>
+
+<div class="card">
+<h2>7. Setter</h2>
+<p>Setter adalah method yang digunakan untuk mengubah atau memperbarui nilai dari variabel private di dalam sebuah class.
+Dengan menggunakan setter, programmer dapat mengontrol bagaimana nilai tersebut diubah dan dapat menambahkan validasi data sebelum nilai baru disimpan ke dalam variabel.</p>
+<a href="https://dartpad.dev/233b59bea7b4c55d3495aa2180cce6e4" target="_blank">
+Lihat Source Code
+</a>
+</div>
+
+<div class="card">
+<h2>8. Studi Kasus Encapsulation (Login System)</h2>
+<p>Dalam pemrograman berorientasi objek (Object Oriented Programming / OOP),
+konsep Encapsulation sering digunakan untuk melindungi data penting dalam sebuah sistem.
+Salah satu contoh penerapan encapsulation yang sering digunakan dalam kehidupan nyata adalah sistem login pada sebuah aplikasi atau website..</p>
+<a href="https://dartpad.dev/9ced2dff4d3c0eaa67b231e2edee5455" target="_blank">
+Lihat Source Code
+</a>
+</div>
+
+</div>
+
+</body>
+</html>
