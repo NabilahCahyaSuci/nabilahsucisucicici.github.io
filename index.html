@@ -449,26 +449,114 @@ void main() {
 // NIM : 251410018
 // Kelas : SI2A
 
-class Product {
-  String nama;
+class Person {
+  String _name;
+  int age;
 
-  Product(this.nama);
+  Person(this._name, this.age);
+
+  void tampilkanData() {
+    print("Nama: $_name");
+    print("Umur: $age");
+  }
 }
 
 void main() {
-  var product1 = Product('Keyboard Gaming');
-  print('Produk dibuat: ${product1.nama}');
+  Person person = Person("Suci", 18);
+
+  person.tampilkanData();
 }
     </div>
-    <button class="btn-popup" onclick="openDartPad('95dd68716c445a7af79ee01b40ef088b')">▶ Jalankan Kode di DartPad</button>
+    <button class="btn-popup" onclick="openDartPad('a076360fa5b018eacf505bc7441072f2')">▶ Jalankan Kode di DartPad</button>
 </div>
 
 <!-- ===== TOPIK 7 : PRODUCT CLASS (KODE AWAL DARI SOAL) ===== -->
 <div class="topik-section">
-    <h3 class="topik-judul">🔹 Product Class (Dari Kode Awal Nabilah)</h3>
+    <h3 class="topik-judul">🔹 Getter</h3>
     <div class="topik-penjelasan">
-        Contoh implementasi class Product sesuai kode awal. 
-        Menampilkan pembuatan objek Keyboard Gaming.
+       Getter adalah metode yang digunakan untuk mengambil nilai dari variabel private.
+    </div>
+    <!-- CODE DART persis seperti di soal: class Product dan main -->
+    <div class="code-block">
+// Nama  : Nabilah Cahya Suci 
+// NIM   : 251410018
+// Kelas : SI2A
+
+class Person {
+  String _name;
+  int age;
+
+  Person(this._name, this.age);
+
+  String get getName1 {
+    return _name;
+  }
+
+  String getName() {
+    return _name;
+  }
+}
+
+void main() {
+  Person person = Person("Suci", 18);
+
+  print(person.age);
+  print(person.getName());
+  print(person.getName1);
+}
+    </div>
+    <button class="btn-popup" onclick="openDartPad('ff07c962d1f2ef3ea2134807c62fe661')">▶ Jalankan Kode di DartPad</button>
+</div>
+
+<!-- ===== TOPIK 8 : HEWAN CLASS ===== -->
+<div class="topik-section">
+    <h3 class="topik-judul">🔹 Setter</h3>
+    <div class="topik-penjelasan">
+       Setter adalah metode yang digunakan untuk mengubah nilai variabel private.
+    </div>
+    <div class="code-block">
+// Nama  : Nabilah Cahya Suci 
+// NIM   : 251410018
+// Kelas : SI2A
+
+class Person {
+  String _name;
+  int age;
+
+  Person(this._name, this.age);
+
+  set setName1(String name) {
+    _name = name;
+  }
+
+  void setName(String name) {
+    _name = name;
+  }
+
+  String getName() {
+    return _name;
+  }
+}
+
+void main() {
+  Person person = Person("Suci", 18);
+
+  print(person.age);
+
+  person.setName('Nabilah');
+  print(person.getName());
+
+  person.setName1 = 'Cahya';
+  print(person.getName());
+}
+    </div>
+    <button class="btn-popup" onclick="openDartPad('e30b58edff231759bb1a1081f75df888')">▶ Jalankan Kode di DartPad</button>
+</div>
+
+<div class="topik-section">
+    <h3 class="topik-judul">🔹 Getter & Setter Validasi</h3>
+    <div class="topik-penjelasan">
+       Getter dan setter juga bisa digunakan untuk memvalidasi data sebelum disimpan.
     </div>
     <!-- CODE DART persis seperti di soal: class Product dan main -->
     <div class="code-block">
@@ -477,95 +565,209 @@ void main() {
 // Kelas : SI2A
 
 class Produk {
-  final String id;
-  final String nama;
-  final double harga;
-  final int stok;
-  final String kategori;
+  String _nama;
+  double _harga;
 
-  Produk({
-    required this.id,
-    required this.nama,
-    required this.harga,
-    this.stok = 0,
-    this.kategori = 'Umum',
-  });
+  Produk(this._nama, this._harga);
 
-  @override
-  String toString() =>
-      'Produk(id: $id, nama: $nama, harga: Rp${harga.toStringAsFixed(2)}, '
-      'stok: $stok, kategori: $kategori)';
+  String get nama => _nama;
+  double get harga => _harga;
+
+  set nama(String value) {
+    if (value.length >= 3) {
+      _nama = value;
+    } else {
+      print('Nama minimal 3 karakter');
+    }
+  }
+
+  set harga(double value) {
+    if (value > 0) {
+      _harga = value;
+    } else {
+      print('Harga harus lebih dari 0');
+    }
+  }
 }
 
 void main() {
-  Produk laptop = Produk(
-    id: 'P001',
-    nama: 'Laptop Gaming',
-    harga: 15000000,
-    stok: 15,
-    kategori: 'Elektronik',
-  );
+  var produk1 = Produk('Laptop', 3500000.0);
 
-  Produk smartphone = Produk(
-    id: 'P002',
-    nama: 'Smartphone Flagship',
-    harga: 12000000,
-    stok: 25,
-  );
+  print(produk1.nama);
+  print(produk1.harga);
 
-  Produk kamera = Produk(
-    id: 'P003',
-    nama: 'Kamera Mirrorless',
-    harga: 20000000,
-  );
+  produk1.nama = 'Mouse';
+  produk1.harga = 1200000.0;
 
-  print('=== Daftar Produk ===');
-  print(laptop);
-  print(smartphone);
-  print(kamera);
+  print(produk1.nama);
+  print(produk1.harga);
 }
     </div>
-    <button class="btn-popup" onclick="openDartPad('63831a0983a2fed183c097908a02a75e')">▶ Jalankan Kode di DartPad</button>
+    <button class="btn-popup" onclick="openDartPad('233b59bea7b4c55d3495aa2180cce6e4')">▶ Jalankan Kode di DartPad</button>
 </div>
 
-<!-- ===== TOPIK 8 : HEWAN CLASS ===== -->
 <div class="topik-section">
-    <h3 class="topik-judul">🔹 QUIZ BONUS: HEWAN CLASS</h3>
+    <h3 class="topik-judul">🔹 Praktik 2: Enkapsulasi Lengkap</h3>
     <div class="topik-penjelasan">
-        Implementasi Kelas Hewan sesuai instruksi diskusi untuk pendefinisian atribut dan metode dasar.
+      Materi ini meminta kita membuat class User dengan konsep enkapsulasi.
     </div>
+    <!-- CODE DART persis seperti di soal: class Product dan main -->
     <div class="code-block">
 // Nama  : Nabilah Cahya Suci 
 // NIM   : 251410018
 // Kelas : SI2A
 
-class Hewan {
-  String nama;
+class User {
+  String? _username;
+  String? _password;
+  String? _email;
 
-  Hewan(this.nama);
+  // Getter
+  String? get username => _username;
+  String? get password => _password;
+  String? get email => _email;
 
-  void bersuara() {
-    print('$nama sedang bersuara...');
-    print('Sound Protocol: [DATA_SOUND_GENERATED]');
+  // Setter Username
+  set username(String username) {
+    if (username.length >= 5) {
+      _username = username;
+    } else {
+      print("Username harus minimal 5 karakter");
+    }
+  }
+
+  // Setter Password
+  set password(String password) {
+    if (password.length >= 8) {
+      _password = password;
+    } else {
+      print("Password harus minimal 8 karakter");
+    }
+  }
+
+  // Setter Email
+  set email(String email) {
+    if (email.contains("@")) {
+      _email = email;
+    } else {
+      print("Email harus mengandung @");
+    }
   }
 }
 
 void main() {
-  var myPet = Hewan('Kucing');
-  print('Nama Hewan: ${myPet.nama}');
-  myPet.bersuara();
+  User user1 = User();
+
+  user1.username = "nabila";
+  user1.password = "password123";
+  user1.email = "nabila@gmail.com";
+
+  print("Username: ${user1.username}");
+  print("Password: ${user1.password}");
+  print("Email: ${user1.email}");
 }
     </div>
-    <button class="btn-popup" onclick="openDartPad('5fcdda6ecd2e2a91feea4ccadff24223')">▶ Jalankan Kode di DartPad</button>
+    <button class="btn-popup" onclick="openDartPad('ffefb5e8e822518f3a6008af92576778')">▶ Jalankan Kode di DartPad</button>
 </div>
+
+<div class="topik-section">
+    <h3 class="topik-judul">🔹 Sistem Login Sederhana</h3>
+    <div class="topik-penjelasan">
+      Sistem login sederhana menggunakan username dan password untuk memverifikasi pengguna.
+    </div>
+    <!-- CODE DART persis seperti di soal: class Product dan main -->
+    <div class="code-block">
+// Nama  : Nabilah Cahya Suci 
+// NIM   : 251410018
+// Kelas : SI2A
+
+  class User {
+  String _username;
+  String _password;
+
+  User(this._username, this._password);
+
+  String get username => _username;
+
+  bool login(String username, String password) {
+    return _username == username && _password == password;
+  }
+
+  void gantiPassword(String lama, String baru) {
+    if (_password == lama) {
+      if (baru.length >= 8) {
+        _password = baru;
+        print('Password berhasil diubah.');
+      } else {
+        print('Password baru minimal 8 karakter.');
+      }
+    } else {
+      print('Password lama salah.');
+    }
+  }
+}
+
+void main() {
+  final User user1 = User('admin_user', 'securePass566');
+
+  if (user1.login('admin_user', 'securePass566')) {
+    print('Login berhasil');
+  } else {
+    print('Login gagal');
+  }
+
+  user1.gantiPassword('securePass566', 'newPassword332');
+}
+}
+    </div>
+    <button class="btn-popup" onclick="openDartPad('9ced2dff4d3c0eaa67b231e2edee5455')">▶ Jalankan Kode di DartPad</button>
+</div>
+    
 
 <!-- KESIMPULAN -->
 <h2>Kesimpulan</h2>
 <p>
-Dengan memahami konsep OOP seperti class, object, constructor, encapsulation, dan this keyword,
-kita dapat membangun program yang lebih rapi, terstruktur, dan mudah dikembangkan.
+Konstruktor digunakan untuk menginisialisasi objek saat class dibuat, sedangkan enkapsulasi digunakan untuk melindungi data dengan membuat variabel private dan mengaksesnya melalui getter dan setter.
+Kedua konsep ini membantu membuat program lebih terstruktur, aman, dan mudah dikelola.
 </p>
 
+</div>
+
+<div class="topik-section">
+    <h3 class="topik-judul">🔹 Bonus 3: Class Rekening Bank</h3>
+    <div class="topik-penjelasan">
+      Class rekening bank digunakan untuk mengelola saldo, setor uang, dan tarik uang.
+    </div>
+    <!-- CODE DART persis seperti di soal: class Product dan main -->
+    <div class="code-block">
+// Nama  : Nabilah Cahya Suci 
+// NIM   : 251410018
+// Kelas : SI2A
+
+class Person {
+  String _name;
+  int age;
+
+  Person(this._name, this.age);
+
+  String get getName1 {
+    return _name;
+  }
+
+  String getName() {
+    return _name;
+  }
+}
+
+void main() {
+  Person person = Person("Suci", 18);
+
+  print(person.age);
+  print(person.getName());
+  print(person.getName1);
+}
+    </div>
+    <button class="btn-popup" onclick="openDartPad('ff07c962d1f2ef3ea2134807c62fe661')">▶ Jalankan Kode di DartPad</button>
 </div>
 
 <!-- MODAL UNTUK DARTPAD -->
