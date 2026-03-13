@@ -6,7 +6,7 @@
 <title>Laporan OOP Dart (Struktur: Judul, Penjelasan, Code, Tombol)</title>
 
 <style>
-/* ===== UI PERTAHAN (SESUAI ASLI) ===== */
+    
 body{
     margin:0;
     font-family: Arial, Helvetica, sans-serif;
@@ -105,7 +105,6 @@ iframe{
     line-height: 1.6;
 }
 
-/* area kode Dart (pratinjau) - tampil seperti code snippet */
 .code-block {
     background-color: #2d0a1f;  /* gelap biar kontras */
     color: #ffe6f2;
@@ -201,105 +200,88 @@ footer{
 
 <div class="container">
 
-<!-- ===== PENGERTIAN OOP (tanpa iframe) ===== -->
 <h2>Pengertian Enkapsulasi</h2>
 <p>
-Enkapsulasi adalah konsep dalam Object Oriented Programming (OOP) yang digunakan untuk membungkus data (variabel) dan metode (fungsi) dalam satu class serta membatasi akses langsung ke data tersebut.
+Enkapsulasi adalah konsep dalam Object Oriented Programming (OOP) yang digunakan untuk membungkus data
+(variabel) dan metode (fungsi) dalam satu class serta membatasi akses langsung ke data tersebut.
 </p>
 
-<!-- ===== KONSEP OOP ===== -->
-<h2>Konsep-Konsep OOP</h2>
-<ul>
-<li><b>Class</b> sebagai cetakan untuk membuat objek.</li>
-<li><b>Object</b> sebagai hasil nyata dari class.</li>
-<li><b>Encapsulation</b> untuk membatasi akses langsung ke data.</li>
-<li><b>Inheritance</b> untuk mewariskan sifat ke class lain.</li>
-<li><b>Polymorphism</b> untuk memungkinkan method memiliki banyak bentuk.</li>
-</ul>
-
-<!-- ===== TOPIK 1 : CLASS SEDERHANA (CAR) ===== -->
-<div class="topik-section">
-    <h3 class="topik-judul">🔹 Class Sederhana (Car)</h3>
-    <div class="topik-penjelasan">
-        Contoh berikut menunjukkan pembuatan class sederhana bernama Car di Dart. 
-        Class ini memiliki atribut brand dan method drive().
-    </div>
-    <!-- CODE DART (pratinjau) -->
+<h2>Constructor Dasar</h2>
+<p>
+Constructor dasar adalah metode khusus dalam pemrograman berorientasi objek (OOP) yang digunakan untuk menginisialisasi 
+atau memberi nilai awal pada atribut suatu objek saat objek dibuat.
+Constructor memiliki nama yang sama dengan nama kelas dan akan dipanggil otomatis ketika objek dibuat.
+</p>
     <div class="code-block">
 // Nama  : Nabilah Cahya Suci 
 // NIM   : 251410018
 // Kelas : SI2A
 
-class Car {
-  String? model;
-  String? color;
+class Buku {
+  String judul;
 
-  void start() {
-    print('Car started!');
-  }
-
-  void stop() {
-    print('Car stopped!');
-  }
+  // Constructor
+  Buku(this.judul);
 }
 
 void main() {
-  Car myCar = Car();
-  myCar.model = "Sedan";
-  myCar.color = "Merah";
-
-  myCar.start();
-  myCar.stop();
-
-  Car anotherCar = Car();
-  anotherCar.model = "SUV";
-  anotherCar.color = "Biru";
-
-  anotherCar.start();
-  anotherCar.stop();
-
-  print("Model mobil saya: ${myCar.model}, warnanya: ${myCar.color}");
-  print("Model mobil lain: ${anotherCar.model}, warnanya: ${anotherCar.color}");
+  var buku1 = Buku("Belajar Dart");
+  print(buku1.judul);
 }
-    </div>
-    <!-- TOMBOL IFRAME -->
-    <button class="btn-popup" onclick="openDartPad('0e08132e64feb0dada7f2b1018b0f57a')">▶ Jalankan Kode di DartPad</button>
-</div>
+    
+<h2>Jenis-jenis Constructor</h2>
+<ul>
+<li><b>1.</b> Default Constructor</li>
+<li><b>2.</b> Named Constructor</li>
+<li><b>3.</b> Parameterized Constructor</li>
+<li><b>4.</b> Constant Constructor</li>
+<li><b>5.</b> Factory Constructor</li>
+</ul>
 
-<!-- ===== TOPIK 2 : OBJECT INSTANTIATION ===== -->
 <div class="topik-section">
-    <h3 class="topik-judul">🔹 Object Instantiation</h3>
+    <h3 class="topik-judul">🔹 Named Constructor</h3>
     <div class="topik-penjelasan">
-        Bagian ini memperlihatkan proses pembuatan objek dari class Car yang sudah dibuat.
-        Kita membuat instance myCar dan memanggil method drive().
+       Named constructor digunakan untuk membuat constructor dengan nama berbeda dalam satu class.
     </div>
-    <!-- CODE DART -->
+  
     <div class="code-block">
-// Nama   : Nabilah Cahya Suci
-// Nim    : 251410018
-// Kelas  : Si2A
+// Nama  : Nabilah Cahya Suci 
+// NIM   : 251410018
+// Kelas : SI2A
 
-class Car {
-  String model;
-  String color;
+import 'dart:convert';
 
-  Car(this.model, this.color);
+class Mobil {
+  String? merk;
+  int? tahun;
 
-  void start() {
-    print("Mobil $model dengan warna $color dinyalakan.");
+  // Parameterized constructor
+  Mobil(this.merk, this.tahun);
+
+  // Named constructor
+  Mobil.baru() {
+    merk = 'Toyota';
+    tahun = 2023;
   }
 
-  void stop() {
-    print("Mobil $model dihentikan.");
+  // Named constructor dengan parameter
+  Mobil.dariJson(Map<String, dynamic> json) {
+    merk = json['merk'];
+    tahun = json['tahun'];
+  }
+
+  @override
+  String toString() {
+    return 'Mobil{merk: $merk, tahun: $tahun}';
   }
 }
 
 void main() {
-  Car myCar = Car("Sedan", "Merah");
-  Car anotherCar = Car("SUV", "Biru");
+  var mobil1 = Mobil("Honda", 2022);
+  var mobil2 = Mobil.baru();
 
-   myCar.start();
-   anotherCar.start();
+  print(mobil1);
+  print(mobil2);
 }
     </div>
     <!-- TOMBOL IFRAME -->
