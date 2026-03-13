@@ -744,30 +744,55 @@ Kedua konsep ini membantu membuat program lebih terstruktur, aman, dan mudah dik
 // NIM   : 251410018
 // Kelas : SI2A
 
-class Person {
-  String _name;
-  int age;
+class RekeningBank {
+  String _nomorRekening;
+  double _saldo;
 
-  Person(this._name, this.age);
+  // Constructor
+  RekeningBank(this._nomorRekening, this._saldo);
 
-  String get getName1 {
-    return _name;
+  // Method cek saldo
+  void cekSaldo() {
+    print("Nomor Rekening: $_nomorRekening");
+    print("Saldo saat ini: Rp $_saldo");
   }
 
-  String getName() {
-    return _name;
+  // Method deposit
+  void deposit(double jumlah) {
+    if (jumlah > 0) {
+      _saldo += jumlah;
+      print("Deposit berhasil: Rp $jumlah");
+    } else {
+      print("Jumlah deposit harus lebih dari 0");
+    }
+  }
+
+  // Method tarik
+  void tarik(double jumlah) {
+    if (jumlah > _saldo) {
+      print("Saldo tidak cukup!");
+    } else if (jumlah <= 0) {
+      print("Jumlah penarikan tidak valid!");
+    } else {
+      _saldo -= jumlah;
+      print("Penarikan berhasil: Rp $jumlah");
+    }
   }
 }
 
 void main() {
-  Person person = Person("Suci", 18);
+  // Membuat objek rekening
+  RekeningBank rekening1 = RekeningBank("123456789", 1000000);
 
-  print(person.age);
-  print(person.getName());
-  print(person.getName1);
+  // Simulasi transaksi
+  rekening1.cekSaldo();
+  rekening1.deposit(500000);
+  rekening1.cekSaldo();
+  rekening1.tarik(300000);
+  rekening1.cekSaldo();
 }
     </div>
-    <button class="btn-popup" onclick="openDartPad('ff07c962d1f2ef3ea2134807c62fe661')">▶ Jalankan Kode di DartPad</button>
+    <button class="btn-popup" onclick="openDartPad('db5c9286a6f7b0156465dc75d33ee7bf')">▶ Jalankan Kode di DartPad</button>
 </div>
 
 <!-- MODAL UNTUK DARTPAD -->
