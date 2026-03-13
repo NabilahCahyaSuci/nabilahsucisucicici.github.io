@@ -808,52 +808,40 @@ void main() {
 </footer>
 
 <script>
-    // SECURITY PROTOCOL: ANTI-VANDALISM & ANTI-VIEWSOURCE
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    document.onkeydown = function (e) {
-      if (e.keyCode == 123) return false; // F12
-      if (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) return false; // Ctrl+Shift+I/J/C
-      if (e.ctrlKey && e.keyCode == 85) return false; // Ctrl+U
-      if (e.ctrlKey && e.keyCode == 83) return false; // Ctrl+S
-    };
-    
-    // Fungsi untuk membuka DartPad di modal
-    function openDartPad(id) {
-        const modal = document.getElementById('dartpadModal');
-        const iframe = document.getElementById('dartpadIframe');
-        
-        // Set src iframe dengan ID yang benar
-        iframe.src = 'https://dartpad.dev/embed-inline.html?id=' + id + '&theme=dark&run=true';
-        
-        // Tampilkan modal
-        modal.style.display = 'block';
-        
-        // Cegah scroll di background
-        document.body.style.overflow = 'hidden';
-    }
+document.addEventListener('contextmenu', e => e.preventDefault());
 
-    // Fungsi untuk menutup modal
-    function closeDartPad() {
-        const modal = document.getElementById('dartpadModal');
-        const iframe = document.getElementById('dartpadIframe');
-        
-        // Sembunyikan modal
-        modal.style.display = 'none';
-        
-        // Hentikan iframe dengan mengosongkan src
-        iframe.src = '';
-        
-        // Kembalikan scroll
-        document.body.style.overflow = 'auto';
-    }
+document.onkeydown = function (e) {
+  if (e.keyCode == 123) return false; // F12
+  if (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) return false;
+  if (e.ctrlKey && e.keyCode == 85) return false; // Ctrl+U
+  if (e.ctrlKey && e.keyCode == 83) return false; // Ctrl+S
+};
 
-    // Tutup modal jika klik di luar konten modal
-    window.onclick = function(event) {
-        const modal = document.getElementById('dartpadModal');
-        if (event.target == modal) {
-            closeDartPad();
-        }
-    }
+// buka dartpad
+function openDartPad(id) {
+    const modal = document.getElementById("dartpadModal");
+    const iframe = document.getElementById("dartpadIframe");
+
+    iframe.src = "https://dartpad.dev/embed-inline.html?id=" + id + "&theme=dark&run=true";
+    modal.style.display = "block";
+}
+
+// tutup dartpad
+function closeDartPad() {
+    const modal = document.getElementById("dartpadModal");
+    const iframe = document.getElementById("dartpadIframe");
+
+    iframe.src = "";
+    modal.style.display = "none";
+}
+
+// klik luar modal = tutup
+window.onclick = function(event) {
+  const modal = document.getElementById("dartpadModal");
+  if (event.target == modal) {
+      closeDartPad();
+  }
+};
 </script>
 
 </body>
