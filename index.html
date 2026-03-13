@@ -9,14 +9,18 @@
 
 body{
     margin:0;
+    padding:0;
     font-family: Arial, Helvetica, sans-serif;
     background:#ffe6f2;
     color:#4a0d33;
 }
 
+/* HEADER */
+
 header{
+    width:100%;
     background:#ffb3d9;
-    padding:20px;
+    padding:25px 10px;
     text-align:center;
 }
 
@@ -29,20 +33,26 @@ header p{
     font-weight:bold;
 }
 
+/* CONTAINER UTAMA */
+
 .container{
     width:90%;
-    max-width:1000px;
-    margin:20px auto;
+    max-width:900px;
+    margin:30px auto;
     background:white;
     padding:25px;
-    border-radius:8px;
-    box-shadow:0 4px 8px rgba(0,0,0,0.1);
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
 }
+
+/* JUDUL */
 
 h2{
     color:#cc0066;
-    margin-top:40px;
+    margin-top:35px;
 }
+
+/* SECTION TOPIK */
 
 .topik-section{
     margin-bottom:40px;
@@ -55,6 +65,7 @@ h2{
     font-size:1.4rem;
     border-left:6px solid #ff99cc;
     padding-left:15px;
+    margin-bottom:10px;
 }
 
 .topik-penjelasan{
@@ -65,17 +76,21 @@ h2{
     line-height:1.6;
 }
 
+/* KODE */
+
 .code-block{
     background:#2d0a1f;
     color:#ffe6f2;
-    font-family:Courier New, monospace;
-    font-size:0.9rem;
+    font-family:'Courier New', monospace;
+    font-size:0.85rem;
     padding:15px;
-    border-radius:10px;
+    border-radius:14px;
     border:1px solid #ff99cc;
     overflow-x:auto;
-    white-space:pre-wrap;
+    white-space:pre;
 }
+
+/* TOMBOL */
 
 .btn-popup{
     background:#cc0066;
@@ -92,12 +107,16 @@ h2{
     background:#a30552;
 }
 
+/* FOOTER */
+
 footer{
     text-align:center;
     padding:15px;
     background:#ffb3d9;
     margin-top:40px;
 }
+
+/* MODAL DARTPAD */
 
 .modal{
     display:none;
@@ -190,7 +209,7 @@ void main() {
     <button class="btn-popup" onclick="openDartPad('dda0d4423ca8a1c6a7bf571ce3354052')">▶ Jalankan Kode di DartPad</button>
 </div>
 
-    
+<div class="container">   
 <h2>Jenis-jenis Constructor</h2>
 <ul>
 <li><b>1.</b> Default Constructor</li>
@@ -199,6 +218,7 @@ void main() {
 <li><b>4.</b> Constant Constructor</li>
 <li><b>5.</b> Factory Constructor</li>
 </ul>
+</div>
 
 <div class="topik-section">
     <h3 class="topik-judul">🔹 Named Constructor</h3>
