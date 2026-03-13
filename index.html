@@ -228,6 +228,12 @@ void main() {
   var buku1 = Buku("Belajar Dart");
   print(buku1.judul);
 }
+
+ </div>
+    <!-- TOMBOL IFRAME -->
+    <button class="btn-popup" onclick="openDartPad('dda0d4423ca8a1c6a7bf571ce3354052')">▶ Jalankan Kode di DartPad</button>
+</div>
+
     
 <h2>Jenis-jenis Constructor</h2>
 <ul>
@@ -260,11 +266,11 @@ class Mobil {
 
   // Named constructor
   Mobil.baru() {
-    merk = 'Toyota';
-    tahun = 2023;
+    merk = 'Alya';
+    tahun = 2025;
   }
 
-  // Named constructor dengan parameter
+  // Named constructor dari JSON
   Mobil.dariJson(Map<String, dynamic> json) {
     merk = json['merk'];
     tahun = json['tahun'];
@@ -277,59 +283,110 @@ class Mobil {
 }
 
 void main() {
-  var mobil1 = Mobil("Honda", 2022);
-  var mobil2 = Mobil.baru();
+  print('--- Demonstrasi Class Mobil ---');
 
-  print(mobil1);
-  print(mobil2);
+  var mobilA = Mobil('Honda', 2022);
+  print('Mobil A: $mobilA');
+
+  var mobilB = Mobil.baru();
+  print('Mobil B: $mobilB');
+
+  String jsonString = '{"merk": "Toyota", "tahun": 2023}';
+  Map<String, dynamic> jsonData = jsonDecode(jsonString);
+
+  var mobilC = Mobil.dariJson(jsonData);
+  print('Mobil C: $mobilC');
+
+  Map<String, dynamic> anotherJsonData = {
+    'merk': 'Pajero',
+    'tahun': 2024
+  };
+
+  var mobilD = Mobil.dariJson(anotherJsonData);
+  print('Mobil D: $mobilD');
 }
     </div>
     <!-- TOMBOL IFRAME -->
-    <button class="btn-popup" onclick="openDartPad('4310ab7f506846fa08fb70f1e4a3a110')">▶ Jalankan Kode di DartPad</button>
+    <button class="btn-popup" onclick="openDartPad('4a5c39df814beec4885a216265b3a64b')">▶ Jalankan Kode di DartPad</button>
 </div>
 
 <!-- ===== TOPIK 3 : CONSTRUCTORS ===== -->
 <div class="topik-section">
-    <h3 class="topik-judul">🔹 Constructors</h3>
+    <h3 class="topik-judul">🔹 Constant Constructor</h3>
     <div class="topik-penjelasan">
-        Constructor digunakan untuk memberikan nilai awal pada atribut ketika objek dibuat.
-        Berikut contoh class Person dengan constructor.
+        Constant constructor adalah constructor yang digunakan untuk membuat objek yang nilainya tidak dapat diubah (immutable). 
+        Constructor ini menggunakan keyword const dan semua field dalam class harus bertipe final.
+    </div>
+    <div class="code-block">
+// Nama  : Nabilah Cahya Suci 
+// NIM   : 251410018
+// Kelas : SI2A
+        
+class Warna {
+  final int r, g, b;
+
+  const Warna(this.r, this.g, this.b);
+
+  String toString() {
+    return 'Warna(r: $r, g: $g, b: $b)';
+  }
+}
+
+void main() {
+  const merah = Warna(255, 0, 0);
+  const kuning = Warna(0, 255, 0);
+
+  print(merah);
+  print(kuning);
+}
+    </div>
+    <button class="btn-popup" onclick="openDartPad('0157b9c5878f569602f713270400dcb2')">▶ Jalankan Kode di DartPad</button>
+</div>
+
+<!-- ===== TOPIK 4 : MAHASISWA (PRACTICE) ===== -->
+<div class="topik-section">
+    <h3 class="topik-judul">🔹 Initializer List</h3>
+    <div class="topik-penjelasan">
+       Initializer list adalah cara untuk menginisialisasi variabel sebelum constructor dijalankan.
+       Biasanya digunakan untuk mengisi field final atau melakukan proses sebelum constructor utama berjalan.
     </div>
     <div class="code-block">
 // Nama  : Nabilah Cahya Suci 
 // NIM   : 251410018
 // Kelas : SI2A
 
-class Car {
-  String? model;
-  String? color;
+class Titik {
+  final double x, y;
 
-  Car(this.model, this.color);
-
-  void start() {
-    print('Car started!');
-  }
-
-  void stop() {
-    print('Car stopped!');
+  Titik(double x, double y)
+      : x = x.abs(),
+        y = y.abs() {
+    print('Titik dibuat di (${this.x}, ${this.y})');
   }
 }
 
 void main() {
-  Car myCar = Car('Toyota', 'Red');
-  print('Model car: ${myCar.model}, color: ${myCar.color}');
-  myCar.start();
+  print('Membuat objek Titik pertama:');
+  var titik1 = Titik(4.0, 6.0);
+  print('Titik 1: x = ${titik1.x}, y = ${titik1.y}');
+
+  print('\nMembuat objek Titik kedua:');
+  var titik2 = Titik(-8.0, 11.0);
+  print('Titik 2: x = ${titik2.x}, y = ${titik2.y}');
+
+  print('\nMembuat objek Titik ketiga:');
+  var titik3 = Titik(-3.5, -5.5);
+  print('Titik 3: x = ${titik3.x}, y = ${titik3.y}');
 }
     </div>
-    <button class="btn-popup" onclick="openDartPad('df1872db21675f08e077e66af653fc33')">▶ Jalankan Kode di DartPad</button>
+    <button class="btn-popup" onclick="openDartPad('939785b16e10cbed79baa22314fc3f97')">▶ Jalankan Kode di DartPad</button>
 </div>
 
-<!-- ===== TOPIK 4 : MAHASISWA (PRACTICE) ===== -->
+<!-- ===== TOPIK 5 : ENCAPSULATION ===== -->
 <div class="topik-section">
-    <h3 class="topik-judul">🔹 Practice Class Mahasiswa</h3>
+    <h3 class="topik-judul">🔹 Praktik 1: Multiple Construktor</h3>
     <div class="topik-penjelasan">
-        Latihan implementasi class Mahasiswa dengan atribut nama dan nim, 
-        dilengkapi method perkenalan().
+       Materi ini menjelaskan bahwa dalam Dart satu class bisa memiliki lebih dari satu constructor untuk membuat objek dengan cara yang berbeda.
     </div>
     <div class="code-block">
 // Nama  : Nabilah Cahya Suci 
@@ -337,85 +394,55 @@ void main() {
 // Kelas : SI2A
 
 class Mahasiswa {
-  String nama;
-  String nim;
-  double ipk;
+  String? nama;
+  int? umur;
 
-  Mahasiswa(this.nama, this.nim, this.ipk) {
-    if (ipk < 0.0 || ipk > 4.0) {
-      throw ArgumentError('IPK harus berada dalam rentang 0.0 - 4.0');
-    }
+  // Default constructor
+  Mahasiswa(this.nama, this.umur);
+
+  // Named constructor dari Map
+  Mahasiswa.dariMap(Map<String, dynamic> data) {
+    nama = data['nama'];
+    umur = data['umur'];
   }
 
-  void tampilkanData() {
-    print('===== Data Mahasiswa =====');
-    print('Nama : $nama');
-    print('NIM  : $nim');
-    print('IPK  : $ipk');
-    print('==========================');
+  // Named constructor tanpa nama
+  Mahasiswa.tanpaNama() {
+    nama = "Tidak diketahui";
+    umur = 0;
   }
 
-  @override
-  String toString() => 'Mahasiswa(nama: $nama, nim: $nim, ipk: $ipk)';
-}
-
-void main() {
-  Mahasiswa mhs1 = Mahasiswa('Budi Santoso', '20230001', 3.75);
-  Mahasiswa mhs2 = Mahasiswa('Siti Aminah', '20230002', 3.92);
-
-  mhs1.tampilkanData();
-  mhs2.tampilkanData();
-
-  print(mhs1);
-}
-    </div>
-    <button class="btn-popup" onclick="openDartPad('d8179e8135108966087d5869f7c114b6')">▶ Jalankan Kode di DartPad</button>
-</div>
-
-<!-- ===== TOPIK 5 : ENCAPSULATION ===== -->
-<div class="topik-section">
-    <h3 class="topik-judul">🔹 Encapsulation</h3>
-    <div class="topik-penjelasan">
-        Encapsulation membatasi akses langsung ke data menggunakan private variable 
-        (ditandai underscore) dan getter/setter.
-    </div>
-    <div class="code-block">
-// Nama  : Nabilah Cahya Suci 
-// NIM   : 251410018
-// Kelas : SI2A
-
-class Person {
-  String _name;
-  int age;
-
-  Person(this._name, this.age);
-
-  void setName(String name) {
-    _name = name;
-  }
-
-  String getName() {
-    return _name;
+  void tampilkan() {
+    print("Nama: $nama, Umur: $umur");
   }
 }
 
 void main() {
-  Person person = Person("Salma", 20);
-  print(person.age);
 
-  person.setName('Aqila');
-  print(person.getName());
+  // Objek menggunakan default constructor
+  var mhs1 = Mahasiswa("Nabila", 17);
+
+  // Objek menggunakan constructor dari Map
+  var data = {"nama": "Andi", "umur": 20};
+  var mhs2 = Mahasiswa.dariMap(data);
+
+  // Objek menggunakan constructor tanpa nama
+  var mhs3 = Mahasiswa.tanpaNama();
+
+  mhs1.tampilkan();
+  mhs2.tampilkan();
+  mhs3.tampilkan();
 }
     </div>
-    <button class="btn-popup" onclick="openDartPad('bea65cb8367e25111b04611f775710e1')">▶ Jalankan Kode di DartPad</button>
+    <button class="btn-popup" onclick="openDartPad('dc48aa998d3ba1867f0acdfca0f188d8')">▶ Jalankan Kode di DartPad</button>
 </div>
 
 <!-- ===== TOPIK 6 : THIS KEYWORD ===== -->
 <div class="topik-section">
-    <h3 class="topik-judul">🔹 This Keyword</h3>
+    <h3 class="topik-judul">🔹 Publix & Public</h3>
     <div class="topik-penjelasan">
-        Keyword <b>this</b> digunakan untuk merujuk pada atribut milik class 
-        agar tidak tertukar dengan parameter yang namanya sama.
+       Public adalah variabel atau metode yang dapat diakses dari luar class.
+       Private adalah variabel atau metode yang hanya dapat diakses di dalam class saja. Pada Dart ditandai dengan underscore _.
     </div>
     <div class="code-block">
 // Nama : Nabilah Cahya Suci
