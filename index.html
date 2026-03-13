@@ -3,137 +3,622 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Laporan OOP Dart</title>
+<title>Laporan OOP Dart (Struktur: Judul, Penjelasan, Code, Tombol)</title>
 
 <style>
+/* ===== UI PERTAHAN (SESUAI ASLI) ===== */
 body{
+    margin:0;
     font-family: Arial, Helvetica, sans-serif;
     background:#ffe6f2;
-    margin:0;
+    color:#4a0d33;
 }
 
 header{
-    background:#ff66b3;
-    color:white;
+    background:#ffb3d9;
     padding:20px;
     text-align:center;
 }
 
-.container{
-    padding:30px;
+header h1{
+    margin:0;
 }
 
-.card{
+header p{
+    margin:5px 0 0 0;
+    font-weight:bold;
+}
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:20px auto;
     background:white;
-    padding:20px;
-    margin-bottom:20px;
-    border-radius:10px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    padding:25px;
+    border-radius:8px;
+    box-shadow:0 4px 8px rgba(0,0,0,0.1);
 }
 
 h2{
     color:#cc0066;
+    margin-top:40px;
 }
 
-a{
-    color:#ff1493;
-    text-decoration:none;
-    font-weight:bold;
+/* iframe wrapper */
+.iframe-wrapper {
+    margin-top: 15px;
+}
+
+iframe{
+    width:100%;
+    height:400px;
+    border:1px solid #ff99cc;
+    border-radius:6px;
+}
+
+/* tombol popup */
+.btn-popup {
+    background-color: #cc0066;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(204, 0, 102, 0.3);
+    transition: background-color 0.2s;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0 5px 0;
+    position: relative;
+    z-index: 10;
+}
+.btn-popup:hover {
+    background-color: #a30552;
+}
+.btn-popup:active {
+    transform: scale(0.97);
+}
+
+/* kontainer per topik - mengikuti struktur baru: judul, penjelasan, code, tombol, iframe */
+.topik-section {
+    margin-bottom: 40px;
+    border-bottom: 1px dashed #ffb3d9;
+    padding-bottom: 25px;
+}
+
+.topik-judul {
+    color: #cc0066;
+    font-size: 1.5rem;
+    margin: 0 0 10px 0;
+    border-left: 6px solid #ff99cc;
+    padding-left: 15px;
+}
+
+.topik-penjelasan {
+    background: #fff0f7;
+    padding: 12px 18px;
+    border-radius: 12px;
+    margin: 10px 0 15px 0;
+    line-height: 1.6;
+}
+
+/* area kode Dart (pratinjau) - tampil seperti code snippet */
+.code-block {
+    background-color: #2d0a1f;  /* gelap biar kontras */
+    color: #ffe6f2;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    padding: 15px 20px;
+    border-radius: 14px;
+    border: 1px solid #ff99cc;
+    overflow-x: auto;
+    white-space: pre-wrap;       /* wrap kode panjang */
+    word-break: break-word;
+    margin: 15px 0 10px 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    line-height: 1.5;
+}
+
+/* kondisi iframe tersembunyi */
+iframe.hidden-iframe {
+    display: none;
+}
+
+/* Style untuk Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    overflow: auto;
+}
+
+.modal-content {
+    position: relative;
+    margin: 5% auto;
+    width: 90%;
+    height: 85%;
+    max-width: 1200px;
+    background: white;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.modal-content iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+}
+
+.close-btn {
+    position: absolute;
+    right: -10px;
+    top: -15px;
+    color: white;
+    background: #cc0066;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.close-btn:hover {
+    background: #a30552;
+}
+
+/* footer */
+footer{
+    text-align:center;
+    padding:15px;
+    background:#ffb3d9;
+    margin-top:40px;
 }
 </style>
-
 </head>
-
 <body>
 
 <header>
-<h1>Laporan OOP Dart</h1>
-<p>Konstruktor dan Enkapsulasi</p>
+    <h1>Konstruktor dan Enkapsulasi</h1>
+    <p>Nama: Nabilah Cahya Suci</p>
+    <p>NIM: 251410018</p>
+    <p>Kelas: SI2A</p>
 </header>
 
 <div class="container">
 
-<div class="card">
-<h2>1. Default & Parameterized Constructor</h2>
-<p>Default Constructor adalah constructor yang dibuat secara otomatis oleh Dart
-jika sebuah class tidak memiliki constructor yang ditulis oleh programmer.
-Constructor ini tidak memiliki parameter dan biasanya digunakan ketika kita ingin
-membuat objek terlebih dahulu kemudian mengisi nilai atributnya setelah objek tersebut dibuat.</p>
-<a href="https://dartpad.dev/4a5c39df814beec4885a216265b3a64b" target="_blank">
-Lihat Source Code
-</a>
+<!-- ===== PENGERTIAN OOP (tanpa iframe) ===== -->
+<h2>Pengertian Enkapsulasi</h2>
+<p>
+Enkapsulasi adalah konsep dalam Object Oriented Programming (OOP) yang digunakan untuk membungkus data (variabel) dan metode (fungsi) dalam satu class serta membatasi akses langsung ke data tersebut.
+</p>
+
+<!-- ===== KONSEP OOP ===== -->
+<h2>Konsep-Konsep OOP</h2>
+<ul>
+<li><b>Class</b> sebagai cetakan untuk membuat objek.</li>
+<li><b>Object</b> sebagai hasil nyata dari class.</li>
+<li><b>Encapsulation</b> untuk membatasi akses langsung ke data.</li>
+<li><b>Inheritance</b> untuk mewariskan sifat ke class lain.</li>
+<li><b>Polymorphism</b> untuk memungkinkan method memiliki banyak bentuk.</li>
+</ul>
+
+<!-- ===== TOPIK 1 : CLASS SEDERHANA (CAR) ===== -->
+<div class="topik-section">
+    <h3 class="topik-judul">🔹 Class Sederhana (Car)</h3>
+    <div class="topik-penjelasan">
+        Contoh berikut menunjukkan pembuatan class sederhana bernama Car di Dart. 
+        Class ini memiliki atribut brand dan method drive().
+    </div>
+    <!-- CODE DART (pratinjau) -->
+    <div class="code-block">
+// Nama  : Nabilah Cahya Suci 
+// NIM   : 251410018
+// Kelas : SI2A
+
+class Car {
+  String? model;
+  String? color;
+
+  void start() {
+    print('Car started!');
+  }
+
+  void stop() {
+    print('Car stopped!');
+  }
+}
+
+void main() {
+  Car myCar = Car();
+  myCar.model = "Sedan";
+  myCar.color = "Merah";
+
+  myCar.start();
+  myCar.stop();
+
+  Car anotherCar = Car();
+  anotherCar.model = "SUV";
+  anotherCar.color = "Biru";
+
+  anotherCar.start();
+  anotherCar.stop();
+
+  print("Model mobil saya: ${myCar.model}, warnanya: ${myCar.color}");
+  print("Model mobil lain: ${anotherCar.model}, warnanya: ${anotherCar.color}");
+}
+    </div>
+    <!-- TOMBOL IFRAME -->
+    <button class="btn-popup" onclick="openDartPad('0e08132e64feb0dada7f2b1018b0f57a')">▶ Jalankan Kode di DartPad</button>
 </div>
 
-<div class="card">
-<h2>2. Named Constructor</h2>
-<p>Named Constructor adalah constructor yang memiliki nama tambahan setelah nama class.
-Tujuan dari named constructor adalah untuk memberikan cara yang berbeda dalam membuat objek dari sebuah class.
-engan adanya named constructor, programmer dapat membuat objek dengan berbagai cara sesuai dengan kebutuhan program.</p>
-<a href="https://dartpad.dev/0157b9c5878f569602f713270400dcb2" target="_blank">
-Lihat Source Code
-</a>
+<!-- ===== TOPIK 2 : OBJECT INSTANTIATION ===== -->
+<div class="topik-section">
+    <h3 class="topik-judul">🔹 Object Instantiation</h3>
+    <div class="topik-penjelasan">
+        Bagian ini memperlihatkan proses pembuatan objek dari class Car yang sudah dibuat.
+        Kita membuat instance myCar dan memanggil method drive().
+    </div>
+    <!-- CODE DART -->
+    <div class="code-block">
+// Nama   : Nabilah Cahya Suci
+// Nim    : 251410018
+// Kelas  : Si2A
+
+class Car {
+  String model;
+  String color;
+
+  Car(this.model, this.color);
+
+  void start() {
+    print("Mobil $model dengan warna $color dinyalakan.");
+  }
+
+  void stop() {
+    print("Mobil $model dihentikan.");
+  }
+}
+
+void main() {
+  Car myCar = Car("Sedan", "Merah");
+  Car anotherCar = Car("SUV", "Biru");
+
+   myCar.start();
+   anotherCar.start();
+}
+    </div>
+    <!-- TOMBOL IFRAME -->
+    <button class="btn-popup" onclick="openDartPad('4310ab7f506846fa08fb70f1e4a3a110')">▶ Jalankan Kode di DartPad</button>
 </div>
 
-<div class="card">
-<h2>3. Constant Constructor</h2>
-<p>Constant Constructor adalah constructor yang digunakan untuk membuat objek konstan (immutable).
-Objek yang dibuat dengan constant constructor tidak dapat diubah nilainya setelah objek tersebut dibuat.
-Hal ini membuat objek menjadi lebih aman dan efisien karena nilai dari objek tersebut bersifat tetap.</p>
-<a href="https://dartpad.dev/939785b16e10cbed79baa22314fc3f97" target="_blank">
-Lihat Source Code
-</a>
+<!-- ===== TOPIK 3 : CONSTRUCTORS ===== -->
+<div class="topik-section">
+    <h3 class="topik-judul">🔹 Constructors</h3>
+    <div class="topik-penjelasan">
+        Constructor digunakan untuk memberikan nilai awal pada atribut ketika objek dibuat.
+        Berikut contoh class Person dengan constructor.
+    </div>
+    <div class="code-block">
+// Nama  : Nabilah Cahya Suci 
+// NIM   : 251410018
+// Kelas : SI2A
+
+class Car {
+  String? model;
+  String? color;
+
+  Car(this.model, this.color);
+
+  void start() {
+    print('Car started!');
+  }
+
+  void stop() {
+    print('Car stopped!');
+  }
+}
+
+void main() {
+  Car myCar = Car('Toyota', 'Red');
+  print('Model car: ${myCar.model}, color: ${myCar.color}');
+  myCar.start();
+}
+    </div>
+    <button class="btn-popup" onclick="openDartPad('df1872db21675f08e077e66af653fc33')">▶ Jalankan Kode di DartPad</button>
 </div>
 
-<div class="card">
-<h2>4. Initializer List</h2>
-<p>Initializer List adalah cara untuk menginisialisasi nilai variabel sebelum constructor dijalankan.
-Initializer list biasanya digunakan untuk memberikan nilai awal pada variabel yang bersifat final,
-karena variabel final hanya dapat diisi satu kali saat objek dibuat.</p>
-<a href="https://dartpad.dev/a076360fa5b018eacf505bc7441072f2" target="_blank">
-Lihat Source Code
-</a>
+<!-- ===== TOPIK 4 : MAHASISWA (PRACTICE) ===== -->
+<div class="topik-section">
+    <h3 class="topik-judul">🔹 Practice Class Mahasiswa</h3>
+    <div class="topik-penjelasan">
+        Latihan implementasi class Mahasiswa dengan atribut nama dan nim, 
+        dilengkapi method perkenalan().
+    </div>
+    <div class="code-block">
+// Nama  : Nabilah Cahya Suci 
+// NIM   : 251410018
+// Kelas : SI2A
+
+class Mahasiswa {
+  String nama;
+  String nim;
+  double ipk;
+
+  Mahasiswa(this.nama, this.nim, this.ipk) {
+    if (ipk < 0.0 || ipk > 4.0) {
+      throw ArgumentError('IPK harus berada dalam rentang 0.0 - 4.0');
+    }
+  }
+
+  void tampilkanData() {
+    print('===== Data Mahasiswa =====');
+    print('Nama : $nama');
+    print('NIM  : $nim');
+    print('IPK  : $ipk');
+    print('==========================');
+  }
+
+  @override
+  String toString() => 'Mahasiswa(nama: $nama, nim: $nim, ipk: $ipk)';
+}
+
+void main() {
+  Mahasiswa mhs1 = Mahasiswa('Budi Santoso', '20230001', 3.75);
+  Mahasiswa mhs2 = Mahasiswa('Siti Aminah', '20230002', 3.92);
+
+  mhs1.tampilkanData();
+  mhs2.tampilkanData();
+
+  print(mhs1);
+}
+    </div>
+    <button class="btn-popup" onclick="openDartPad('d8179e8135108966087d5869f7c114b6')">▶ Jalankan Kode di DartPad</button>
 </div>
 
-<div class="card">
-<h2>5. Dalam pemrograman berorientasi objek (Object Oriented Programming / OOP),
-terdapat beberapa konsep dasar yang sangat penting untuk dipahami,
-salah satunya adalah Encapsulation atau enkapsulasi.Private variable adalah variabel yang hanya dapat digunakan di dalam class itu sendiri.
-Variabel ini tidak dapat diakses secara langsung dari luar class sehingga data yang disimpan lebih aman dan tidak mudah diubah oleh bagian lain dari program.</p>
-<a href="https://dartpad.dev/ff07c962d1f2ef3ea2134807c62fe661" target="_blank">
-Lihat Source Code
-</a>
+<!-- ===== TOPIK 5 : ENCAPSULATION ===== -->
+<div class="topik-section">
+    <h3 class="topik-judul">🔹 Encapsulation</h3>
+    <div class="topik-penjelasan">
+        Encapsulation membatasi akses langsung ke data menggunakan private variable 
+        (ditandai underscore) dan getter/setter.
+    </div>
+    <div class="code-block">
+// Nama  : Nabilah Cahya Suci 
+// NIM   : 251410018
+// Kelas : SI2A
+
+class Person {
+  String _name;
+  int age;
+
+  Person(this._name, this.age);
+
+  void setName(String name) {
+    _name = name;
+  }
+
+  String getName() {
+    return _name;
+  }
+}
+
+void main() {
+  Person person = Person("Salma", 20);
+  print(person.age);
+
+  person.setName('Aqila');
+  print(person.getName());
+}
+    </div>
+    <button class="btn-popup" onclick="openDartPad('bea65cb8367e25111b04611f775710e1')">▶ Jalankan Kode di DartPad</button>
 </div>
 
-<div class="card">
-<h2>6. Getter</h2>
-<p>Getter adalah method yang digunakan untuk mengambil atau membaca nilai dari variabel private di dalam sebuah class.
-Dengan menggunakan getter, data tetap terlindungi karena tidak dapat diakses secara langsung,
-tetapi masih dapat dibaca melalui method yang telah disediakan.</p>
-<a href="https://dartpad.dev/e30b58edff231759bb1a1081f75df888" target="_blank">
-Lihat Source Code
-</a>
+<!-- ===== TOPIK 6 : THIS KEYWORD ===== -->
+<div class="topik-section">
+    <h3 class="topik-judul">🔹 This Keyword</h3>
+    <div class="topik-penjelasan">
+        Keyword <b>this</b> digunakan untuk merujuk pada atribut milik class 
+        agar tidak tertukar dengan parameter yang namanya sama.
+    </div>
+    <div class="code-block">
+// Nama : Nabilah Cahya Suci
+// NIM : 251410018
+// Kelas : SI2A
+
+class Product {
+  String nama;
+
+  Product(this.nama);
+}
+
+void main() {
+  var product1 = Product('Keyboard Gaming');
+  print('Produk dibuat: ${product1.nama}');
+}
+    </div>
+    <button class="btn-popup" onclick="openDartPad('95dd68716c445a7af79ee01b40ef088b')">▶ Jalankan Kode di DartPad</button>
 </div>
 
-<div class="card">
-<h2>7. Setter</h2>
-<p>Setter adalah method yang digunakan untuk mengubah atau memperbarui nilai dari variabel private di dalam sebuah class.
-Dengan menggunakan setter, programmer dapat mengontrol bagaimana nilai tersebut diubah dan dapat menambahkan validasi data sebelum nilai baru disimpan ke dalam variabel.</p>
-<a href="https://dartpad.dev/233b59bea7b4c55d3495aa2180cce6e4" target="_blank">
-Lihat Source Code
-</a>
+<!-- ===== TOPIK 7 : PRODUCT CLASS (KODE AWAL DARI SOAL) ===== -->
+<div class="topik-section">
+    <h3 class="topik-judul">🔹 Product Class (Dari Kode Awal Nabilah)</h3>
+    <div class="topik-penjelasan">
+        Contoh implementasi class Product sesuai kode awal. 
+        Menampilkan pembuatan objek Keyboard Gaming.
+    </div>
+    <!-- CODE DART persis seperti di soal: class Product dan main -->
+    <div class="code-block">
+// Nama  : Nabilah Cahya Suci 
+// NIM   : 251410018
+// Kelas : SI2A
+
+class Produk {
+  final String id;
+  final String nama;
+  final double harga;
+  final int stok;
+  final String kategori;
+
+  Produk({
+    required this.id,
+    required this.nama,
+    required this.harga,
+    this.stok = 0,
+    this.kategori = 'Umum',
+  });
+
+  @override
+  String toString() =>
+      'Produk(id: $id, nama: $nama, harga: Rp${harga.toStringAsFixed(2)}, '
+      'stok: $stok, kategori: $kategori)';
+}
+
+void main() {
+  Produk laptop = Produk(
+    id: 'P001',
+    nama: 'Laptop Gaming',
+    harga: 15000000,
+    stok: 15,
+    kategori: 'Elektronik',
+  );
+
+  Produk smartphone = Produk(
+    id: 'P002',
+    nama: 'Smartphone Flagship',
+    harga: 12000000,
+    stok: 25,
+  );
+
+  Produk kamera = Produk(
+    id: 'P003',
+    nama: 'Kamera Mirrorless',
+    harga: 20000000,
+  );
+
+  print('=== Daftar Produk ===');
+  print(laptop);
+  print(smartphone);
+  print(kamera);
+}
+    </div>
+    <button class="btn-popup" onclick="openDartPad('63831a0983a2fed183c097908a02a75e')">▶ Jalankan Kode di DartPad</button>
 </div>
 
-<div class="card">
-<h2>8. Studi Kasus Encapsulation (Login System)</h2>
-<p>Dalam pemrograman berorientasi objek (Object Oriented Programming / OOP),
-konsep Encapsulation sering digunakan untuk melindungi data penting dalam sebuah sistem.
-Salah satu contoh penerapan encapsulation yang sering digunakan dalam kehidupan nyata adalah sistem login pada sebuah aplikasi atau website..</p>
-<a href="https://dartpad.dev/9ced2dff4d3c0eaa67b231e2edee5455" target="_blank">
-Lihat Source Code
-</a>
+<!-- ===== TOPIK 8 : HEWAN CLASS ===== -->
+<div class="topik-section">
+    <h3 class="topik-judul">🔹 QUIZ BONUS: HEWAN CLASS</h3>
+    <div class="topik-penjelasan">
+        Implementasi Kelas Hewan sesuai instruksi diskusi untuk pendefinisian atribut dan metode dasar.
+    </div>
+    <div class="code-block">
+// Nama  : Nabilah Cahya Suci 
+// NIM   : 251410018
+// Kelas : SI2A
+
+class Hewan {
+  String nama;
+
+  Hewan(this.nama);
+
+  void bersuara() {
+    print('$nama sedang bersuara...');
+    print('Sound Protocol: [DATA_SOUND_GENERATED]');
+  }
+}
+
+void main() {
+  var myPet = Hewan('Kucing');
+  print('Nama Hewan: ${myPet.nama}');
+  myPet.bersuara();
+}
+    </div>
+    <button class="btn-popup" onclick="openDartPad('5fcdda6ecd2e2a91feea4ccadff24223')">▶ Jalankan Kode di DartPad</button>
 </div>
 
+<!-- KESIMPULAN -->
+<h2>Kesimpulan</h2>
+<p>
+Dengan memahami konsep OOP seperti class, object, constructor, encapsulation, dan this keyword,
+kita dapat membangun program yang lebih rapi, terstruktur, dan mudah dikembangkan.
+</p>
+
 </div>
+
+<!-- MODAL UNTUK DARTPAD -->
+<div id="dartpadModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeDartPad()">&times;</span>
+        <iframe id="dartpadIframe" src="" allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking" sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 - Laporan OOP Dart Nabilah Cahya Suci</p>
+</footer>
+
+<script>
+    // SECURITY PROTOCOL: ANTI-VANDALISM & ANTI-VIEWSOURCE
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.onkeydown = function (e) {
+      if (e.keyCode == 123) return false; // F12
+      if (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) return false; // Ctrl+Shift+I/J/C
+      if (e.ctrlKey && e.keyCode == 85) return false; // Ctrl+U
+      if (e.ctrlKey && e.keyCode == 83) return false; // Ctrl+S
+    };
+    
+    // Fungsi untuk membuka DartPad di modal
+    function openDartPad(id) {
+        const modal = document.getElementById('dartpadModal');
+        const iframe = document.getElementById('dartpadIframe');
+        
+        // Set src iframe dengan ID yang benar
+        iframe.src = 'https://dartpad.dev/embed-inline.html?id=' + id + '&theme=dark&run=true';
+        
+        // Tampilkan modal
+        modal.style.display = 'block';
+        
+        // Cegah scroll di background
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Fungsi untuk menutup modal
+    function closeDartPad() {
+        const modal = document.getElementById('dartpadModal');
+        const iframe = document.getElementById('dartpadIframe');
+        
+        // Sembunyikan modal
+        modal.style.display = 'none';
+        
+        // Hentikan iframe dengan mengosongkan src
+        iframe.src = '';
+        
+        // Kembalikan scroll
+        document.body.style.overflow = 'auto';
+    }
+
+    // Tutup modal jika klik di luar konten modal
+    window.onclick = function(event) {
+        const modal = document.getElementById('dartpadModal');
+        if (event.target == modal) {
+            closeDartPad();
+        }
+    }
+</script>
 
 </body>
 </html>
